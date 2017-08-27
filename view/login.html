@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>
+            Q&A-Harshit Shah
+        </title>
+        <link rel="stylesheet" href="login.css">
+    </head>
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" method="post" action="/signup">
+      <input type="text" placeholder="name" name="username"/>
+      <input type="password" placeholder="password" name="password"/>
+      <input type="text" placeholder="email address"/>
+      <button type="submit">create</button>
+      <p class="message">Already registered? <a >Sign In</a></p>
+    </form>
+    <form class="login-form" method="post" action="/login">
+      <input type="text" placeholder="username" name="username"/>
+      <input type="password" placeholder="password" name="password"/>
+      <button type="submit">login</button>
+      <p class="message">Not registered? <a>Create an account</a></p>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="login.js"></script> 
+</html>
