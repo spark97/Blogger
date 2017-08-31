@@ -38,7 +38,7 @@ module.exports = function(passport){
                 {
                     var newUser = {
                         username: username,
-                        password: password// bcrypt.hashSync(password,null,null)
+                        password: password
                     };
                     var insertQuery = "insert into users (username,password) values (?,?)";
                     connection.query(insertQuery,[newUser.username,newUser.password],function(err,rows){
