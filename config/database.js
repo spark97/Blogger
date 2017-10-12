@@ -2,8 +2,8 @@ module.exports = {
     'connection':{
         'host': 'localhost',
         'user':'root',
-        'password':'12345'
+        'password':''
     },
-    'database':'nodejs',
-    'users_table':'users'
+    'database':'blogger',
+    'users_table':'user'
 };

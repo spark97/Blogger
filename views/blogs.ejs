@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-  <title>Blogger</title>
+  <title>My Blogger</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap.min.css">
@@ -12,6 +12,7 @@
   
 </head>
 <body>
+
 <!-- Static navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -22,6 +23,7 @@
       <li class="active"><a href="/">Home</a></li>
       <li class="" data-toggle="modal" data-target="#add_blog_modal"><a href="#">Post A New Blog</a></li>
       <li class=""><a href="/profile">Profile Page</a></li>
+      <li class=""><a href="/logout">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -30,25 +32,38 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Welcome <%= name %> </h1> 
-        <p>Add new blog posts and klet the world know what you think !!!</p> 
+        <p>Add new blog posts and let the world know what you think !!!</p> 
       </div>
     </div>
     <div class="container">
         <div class="col-sm-12">
           <h2>RECENT POSTS</h2>
           <hr>
-          <h2>I Love Food</h2>
+
+          <% for(i=0;i<blogs.length;i++) { var link = "/blogs/"+blogs[i].id %>
+            <a href=<%= link %> ><h2><%= blogs[i].title %></h2></a>
+            <h5><span class="glyphicon glyphicon-time"></span> Post by <%= blogs[i].username %></h5>
+            <p><%= blogs[i].description %></p>
+            <hr>
+            <% } %>
+
+
+          <!--<h2>I Love Food</h2>
           <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
           <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
           <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <br><br>
-        
           <hr>
+
+
           <h2>Officially Blogging</h2>
           <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
           <h5><span class="label label-success">Lorem</span></h5><br>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <hr>
+          <hr>-->
+
+
+
+
           </div>
         </div>
     </div>
@@ -73,16 +88,16 @@
         <h4 class="modal-title">Add a new blog</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/blogs" method="post">
           <div class="form-group">
             <label for="blog title">Title</label>
-            <input type="text" class="form-control" id="title">
+            <input type="text" name="title" class="form-control" id="title">
           </div>
           <div class="form-group">
             <label for="Content">Content Of The Blog</label>
-            <textarea rows="6" class="form-control" id="content"></textarea>
+            <textarea rows="6" name="description" class="form-control" id="content"></textarea>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <input type="submit" class="btn btn-default">Submit</button>
         </form>
       </div>
       <div class="modal-footer">

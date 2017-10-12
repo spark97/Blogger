@@ -14,7 +14,7 @@ module.exports = function(passport){
     });
 
     passport.deserializeUser(function(id,done){
-        connection.query("select * from users where id=?",[id],function(err,rows){
+        connection.query("select * from user where id=?",[id],function(err,rows){
             done(err,rows[0]);
         });
     });
@@ -27,7 +27,7 @@ module.exports = function(passport){
             passReqToCallback   : true
         },
         function(req,username,password,done){
-            connection.query("select * from users where username =? ",[username],function(err,rows){
+            connection.query("select * from user where username =? ",[username],function(err,rows){
                 if(err){
                     return done(err);
                 }
@@ -40,7 +40,7 @@ module.exports = function(passport){
                         username: username,
                         password: password
                     };
-                    var insertQuery = "insert into users (username,password) values (?,?)";
+                    var insertQuery = "insert into user (username,password) values (?,?)";
                     connection.query(insertQuery,[newUser.username,newUser.password],function(err,rows){
                         newUser.id = rows.insertId;
                         return done(null,newUser);
@@ -60,7 +60,7 @@ passport.use(
         passReqToCallback : true
     },
     function(req,username,password,done){
-        connection.query("select * from users where username = ?",[username],function(err,rows){
+        connection.query("select * from user where username = ?",[username],function(err,rows){
             if(err)
                 return done(err);
             if(!rows.length){
