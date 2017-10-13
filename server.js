@@ -142,7 +142,8 @@ function(req,res){
             console.log("result "+rows);
             res.render("blog_page.ejs",{
                 name:req.user.username,
-                details:rows
+                details:rows,
+                id:id
             });
         }
     });
@@ -192,5 +193,11 @@ function(req,res){
     });
 });
 
+
+/////////////////////////////AJAX Request Handlers/////////////////////////////
+app.post('/like',function(req,res){
+    console.log(req.body.id);
+    res.end('done');
+});
 
 app.listen(3000);
