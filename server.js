@@ -197,7 +197,27 @@ function(req,res){
 /////////////////////////////AJAX Request Handlers/////////////////////////////
 app.post('/like',function(req,res){
     console.log(req.body.id);
-    res.end('done');
+    connection.query('INSERT INTO response (user_id,blog_id,type) VALUES (?,?,?)',[req.user.id,req.body.id,1],function(err,rows){
+        if(err){
+            console.log(err);
+            res.end('error');
+        }
+        else{
+            res.end('success');
+        }
+    });
+});
+
+app.post('/dislike',function(req,res){
+    console.log(req.body.id);
+    connection.query('INSERT INTO response (user_id,blog_id,type) VALUES (?,?,?)',[req.user.id,req.body.id,-1],function(err,rows){
+        if(err){
+            res.end('error');
+        }
+        else{
+            res.end('success');
+        }
+    });
 });
 
 app.listen(3000);

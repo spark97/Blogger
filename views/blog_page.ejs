@@ -78,14 +78,24 @@
 	<script> 
 	var id = <%= id %>;
 	function like(){
-		$.post('/like',{id:id},function(){
-			alert('liked');
+		$.post('/like',{id:id},function(data){
+			if(data=="success"){
+				alert('Liked');
+			}
+			else{
+				alert('Error');
+			}
 		});
 	}
 
 	function dislike(){
-		$.post('/dislike',{id:id},function(){
-			alert('disliked');
+		$.post('/dislike',{id:id},function(data){
+			if(data=="success"){
+				alert('disliked');
+			}
+			else{
+				alert('Error');
+			}
 		});
 	}
 	</script>
